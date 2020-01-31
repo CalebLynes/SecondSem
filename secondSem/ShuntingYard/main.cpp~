@@ -1,0 +1,47 @@
+//main.cpp
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+struct node {
+  char data = ' ';
+  node* prev = NULL;
+};
+
+void push(char newdata, node* &top);
+
+int main() {
+  node* top = NULL;
+  //cout << "Enter a mathematical expression: " << endl;
+  char input[] = {"(4+(6-7)*8)^2"};
+  cout << input << endl;
+  
+  for (int i = 0; i < strlen(input); i++) {
+    cout << "point1" << endl;
+    push(input[i], top);
+  }
+  
+  return 0;
+}
+
+void push(char newdata, node* &top) {
+  cout << "point2" << endl;
+  if (top == NULL) {
+    cout << "point3" << endl;
+    //list is empty
+    node* n;
+    cout << "point4" << endl;
+    cout << newdata << endl;
+    //n->data = newdata;
+    top = n;
+  }
+  else {
+    //list is not empty
+    node* temp = top;
+    node* n;
+    n->data = newdata;
+    top = n;
+    n->prev = temp;
+  }
+}
