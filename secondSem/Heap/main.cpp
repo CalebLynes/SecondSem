@@ -1,62 +1,35 @@
 //main.cpp
 #include <iostream>
 #include <cstring>
+#include <stdlib.h>
 
 using namespace std;
 
-struct Node {
-  int data;
-  Node* next;
-};
-
-void push(Node* &head, Node* &newnode);
-Node* pop(Node* &head);
-Node* newNode(int data);
 
 //---Main---
 int main() {
-  Node* head = NULL;
+  
+  int size = 0;
+  char input[] = {"10 3 9 78 5 23 34 98 12 4 87"};
+  for (int i = 0; i < strlen(input); i++) {
+    if (input[i] == ' ') {
+      size++;
+    }
+  }
+  int array[size+1];
 
-  char input[] = {"10 3 9 78 5 23"};
+  int j = 0;
   char* a = strtok(input, " ");
   while (a != NULL) {
-    push(head, newNode((int)(*a)));
+    int key = atoi(a);
+    array[j] = key;
+    j++;
     a = strtok(NULL, " ");
   }
-
-  Node* current = head;
-  while (current != NULL) {
-    cout << current->data << endl;
-    current = current->next;
-  }
   
+  for (int i = 0; i <= size; i++) {
+    cout << array[i] << endl;
+  }
   
   return 0;
-}
-
-//---New Node---
-Node* newNode(int data) {
-  Node* n = new Node;
-  n->data = data;
-  return n;
-}
-
-//---Push---
-void push(Node* &head, Node* &newnode) {
-  if (head == NULL) {
-    //heap is empty
-    head = newnode;
-  }
-  else {
-    //heap is not empty
-    Node* temp = head;
-    head = newnode;
-    head->next = temp;
-  }
-}
-
-//---Push---
-Node* pop(Node* &head) {
-
-  
 }
