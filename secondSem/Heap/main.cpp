@@ -8,18 +8,21 @@ using namespace std;
 
 void maxHeapify(int (&A)[100], int i, int size, int &count);
 void printHeap(int (&A)[100], int size);
+void printGivenLevel(int (&A)[100], int root, int level, int size);
 
 //---Main---
 int main() {
   
   int size = 0;
-  char input[] = {"10 12 56 98 403 290 71 6 546 89 299 743 34 92 4"};
+  char input[] = {"7 6 5 4 3 2 1"};
   //amount of elements in array
   for (int i = 0; i < strlen(input); i++) {
     if (input[i] == ' ') {
       size++;
     }
   }
+  size++;
+  cout << "Size: " << size << endl;
   //empty heap
   int heap[100];
 
@@ -39,13 +42,13 @@ int main() {
   while (count > 0) {
     cout << "RESTART" << endl;
     count = 0;
-    for (int i = 0; i <= size; i++) {
+    for (int i = 0; i < size; i++) {
       maxHeapify(heap, i, size, count);
     }
   }
   cout << "DONE" << endl;
   cout << endl;
-  for (int i = 0; i <= size; i++) {
+  for (int i = 0; i < size; i++) {
     cout << heap[i] << endl;
   }
   cout << endl;
@@ -81,8 +84,29 @@ void maxHeapify(int (&A)[100], int i, int size, int &count) {
 }
 
 void printHeap(int (&A)[100], int size) {
-  float levels = floor(1 + log2(size));
+  cout << "Size: " << size << endl;
+  int levels = floor(1 + log2(size));
   cout << "levels: " << levels << endl;
-
   
+  int nodesBeforeLast = pow(2, levels-1) - 1;
+  cout << "Nodes before last: " << nodesBeforeLast << endl;
+  int lastLevelNodes = size - nodesBeforeLast;
+  cout << "Nodes on last level: " << lastLevelNodes << endl;
+
+  for (int i = 1; i <= levels; i++) {
+    printGivenLevel(A, A[0], i, size);
+  }
+}
+
+void printGivenLevel(int (&A)[100], int root, int level, int size) {
+  if (root == 0) {
+    return;
+  }
+  if (level == 1) {
+    cout << root << endl;
+  }
+  else if (level > 1) {
+    //level is greater than 1
+    
+  }
 }
